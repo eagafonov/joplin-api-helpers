@@ -27,7 +27,7 @@ Check https://joplinapp.org/spec/clipper_auth for the instruction on how to get 
 1. Create the folder to store TODOs
 2. Copy folder external link. It would look like this:
 ```
-joplin://x-callback-url/openFolder? id=881fbd136e064c199624adb027752f8e'
+joplin://x-callback-url/openFolder?id=881fbd136e064c199624adb027752f8e'
 ```
 
 3. Extract `id` part from the link.
