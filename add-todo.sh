@@ -17,7 +17,9 @@ test -f ${R}/.joplin.env
 xdg-open joplin://x-callback-url/openFolder?id=${TODO_FOLDER}
 
 # Wait for Joplin is started for 5 seconds
-timeout 5 bash -c "while (! nc -z localhost 41184); do echo -n .; sleep 1; done; echo" || (zenity --warning --text="Joplin is not started"; exit 1)
+timeout 5 bash -c "while (! nc -z localhost 41184); do echo -n .; sleep 0.5; done; echo" || (zenity --warning --text="Joplin is not started"; exit 1)
+
+curl -q --no-progress-meter http://localhost:41184/ping > /dev/null || (zenity --warning --text="Joplin is not started"; exit 1)
 
 http --ignore-stdin POST http://localhost:41184/notes?token=${AUTH_TOKEN} title="${text}" body="${text}" folder=${TODO_FOLDER} is_todo=1 | jq > add-todo.json
 
