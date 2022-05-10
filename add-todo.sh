@@ -21,8 +21,7 @@ timeout 5 bash -c "while (! nc -z localhost 41184); do echo -n .; sleep 0.5; don
 
 curl -q --no-progress-meter http://localhost:41184/ping > /dev/null || (zenity --warning --text="Joplin is not started"; exit 1)
 
-http --ignore-stdin POST http://localhost:41184/notes?token=${AUTH_TOKEN} title="${text}" body="${text}" folder=${TODO_FOLDER} is_todo=1 | jq > add-todo.json
-
+http --ignore-stdin POST http://localhost:41184/notes?token=${AUTH_TOKEN} title="${text}" body="${text}" parent_id=${TODO_FOLDER} is_todo=1 | jq > add-todo.json
 
 # Open newly created note
 NOTE_ID=$(jq -r '.id' add-todo.json)
